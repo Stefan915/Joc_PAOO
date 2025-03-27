@@ -10,5 +10,7 @@ public class Main
         mapInfo.printMap();
         layout map = new layout(6, mapInfo._map);
         map.print();
+        System.out.print("tralalelo");
+        System.out.print("tralalelo");
     }
 }
