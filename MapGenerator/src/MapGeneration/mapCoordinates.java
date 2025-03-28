@@ -1,3 +1,5 @@
+package MapGeneration;
+
 public class mapCoordinates
 {
     public int x;

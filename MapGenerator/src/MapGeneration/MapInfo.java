@@ -1,3 +1,5 @@
+package MapGeneration;
+
 import java.util.List;
 
 public class MapInfo

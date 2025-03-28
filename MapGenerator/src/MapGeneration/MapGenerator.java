@@ -1,7 +1,8 @@
+package MapGeneration;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-
+import Mathf.Rand;
 
 
 enum roomTypes
@@ -64,7 +65,7 @@ public class MapGenerator
         //generarea camerelor
         while(roomsCount!=0)
         {
-            currentRoomIndex=Rand.Range(0,availableRooms.size());
+            currentRoomIndex= Rand.Range(0,availableRooms.size());
             currentX=availableRooms.get(currentRoomIndex).x;
             currentY=availableRooms.get(currentRoomIndex).y;
             placedRooms.add(availableRooms.get(currentRoomIndex));
@@ -129,7 +130,7 @@ public class MapGenerator
         //adauga cufere
         while(chestsCount!=0)
         {
-            currentRoomIndex=Rand.Range(0,placedRooms.size());
+            currentRoomIndex= Rand.Range(0,placedRooms.size());
             currentX=placedRooms.get(currentRoomIndex).x;
             currentY=placedRooms.get(currentRoomIndex).y;
             mapInfo._map[currentX][currentY]=roomTypes.CHEST;
