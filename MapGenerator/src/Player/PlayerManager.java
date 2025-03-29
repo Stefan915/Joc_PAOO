@@ -15,7 +15,7 @@ import javax.imageio.ImageIO;
 
 public class PlayerManager extends Entity implements I_imageContainer, StandardBehaviour
 {
-    private float movementSpeed=8;
+    private float movementSpeed=6;
 
 
 
