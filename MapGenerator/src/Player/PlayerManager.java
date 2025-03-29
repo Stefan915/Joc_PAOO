@@ -44,9 +44,7 @@ public class PlayerManager extends Entity implements I_imageContainer, StandardB
     public void draw(Graphics2D graphics2D)
     {
         BufferedImage currentFrame;
-        currentFrame=downFrames.get(0);
 
-        graphics2D.drawImage(currentFrame,100,100,100,100,null);
     }
 
 

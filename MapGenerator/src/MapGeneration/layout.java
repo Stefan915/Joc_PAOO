@@ -18,21 +18,22 @@ enum extendedRoomTypes
 
 
 public class layout {
-    private extendedRoomTypes[][] layOut;
-    private extendedRoomTypes[][] floorLayout;
+    private LayoutInfo layoutInfo;
 
     public layout(int roomSize, roomTypes[][] base, int enemiesPerRoomMin, int enemiesPerRoomMax) {
         int baseSize = base[0].length;
 
-        layOut = new extendedRoomTypes[roomSize * baseSize][roomSize * baseSize];
-        floorLayout = new extendedRoomTypes[roomSize * baseSize][roomSize * baseSize];
+        layoutInfo=new LayoutInfo();
+
+        layoutInfo.layOut = new extendedRoomTypes[roomSize * baseSize][roomSize * baseSize];
+        layoutInfo.floorLayout = new extendedRoomTypes[roomSize * baseSize][roomSize * baseSize];
 
         for(int i=0;i<roomSize*baseSize;i++)
         {
             for(int j=0;j<roomSize*baseSize;j++)
             {
-                layOut[i][j]=extendedRoomTypes.NOTHING;
-                floorLayout[i][j]=extendedRoomTypes.NOTHING;
+                layoutInfo.layOut[i][j]=extendedRoomTypes.NOTHING;
+                layoutInfo.floorLayout[i][j]=extendedRoomTypes.NOTHING;
             }
 
         }
@@ -47,14 +48,14 @@ public class layout {
                 if (currentRoom != roomTypes.NOTHING) {
 
 
-                    for (int i = ki; i < ki + roomSize; i++) {
-                        for (int j = kj; j < kj + roomSize; j++) {
-                            if (j == kj || j + 1 == kj + roomSize || i + 1 == ki + roomSize || i == ki) {
-                                layOut[i][j] = extendedRoomTypes.WALL;
+                    for (int i = ki+1; i < ki + roomSize-1; i++) {
+                        for (int j = kj+1; j < kj + roomSize-1; j++) {
+                            if (j == kj+1 || j + 1 == kj + roomSize-1 || i + 1 == ki + roomSize-1 || i == ki+1) {
+                                layoutInfo.layOut[i][j] = extendedRoomTypes.WALL;
                             }
                             else
                             {
-                                floorLayout[i][j]=extendedRoomTypes.FLOOR;
+                                layoutInfo.floorLayout[i][j]=extendedRoomTypes.FLOOR;
                             }
                         }
                     }
@@ -63,12 +64,33 @@ public class layout {
                     if (ki / roomSize - 1 >= 0) {
                         if (base[ki / roomSize - 1][kj / roomSize] != roomTypes.NOTHING) {
                             if (roomSize % 2 == 1) {
-                                layOut[ki][kj + roomSize / 2] = extendedRoomTypes.DOOR;
-                                layOut[ki][kj + roomSize / 2 + 1] = extendedRoomTypes.DOOR;
-                                layOut[ki][kj + roomSize / 2 - 1] = extendedRoomTypes.DOOR;
+                                layoutInfo.layOut[ki+1][kj + roomSize / 2] = extendedRoomTypes.DOOR;
+                                layoutInfo.layOut[ki+1][kj + roomSize / 2 + 1] = extendedRoomTypes.DOOR;
+                                layoutInfo.layOut[ki+1][kj + roomSize / 2 - 1] = extendedRoomTypes.DOOR;
+
+                                layoutInfo.floorLayout[ki+1][kj + roomSize / 2] = extendedRoomTypes.FLOOR;
+                                layoutInfo.floorLayout[ki+1][kj + roomSize / 2 + 1] = extendedRoomTypes.FLOOR;
+                                layoutInfo.floorLayout[ki+1][kj + roomSize / 2 - 1] = extendedRoomTypes.FLOOR;
+
+                                layoutInfo.floorLayout[ki][kj + roomSize / 2] = extendedRoomTypes.FLOOR;
+                                layoutInfo.floorLayout[ki][kj + roomSize / 2 + 1] = extendedRoomTypes.FLOOR;
+                                layoutInfo.floorLayout[ki][kj + roomSize / 2 - 1] = extendedRoomTypes.FLOOR;
+
+                                layoutInfo.layOut[ki][kj + roomSize / 2-2] = extendedRoomTypes.WALL;
+                                layoutInfo.layOut[ki][kj + roomSize / 2+2] = extendedRoomTypes.WALL;
                             } else {
-                                layOut[ki][kj + roomSize / 2] = extendedRoomTypes.DOOR;
-                                layOut[ki][kj + roomSize / 2 - 1] = extendedRoomTypes.DOOR;
+                                layoutInfo.layOut[ki+1][kj + roomSize / 2] = extendedRoomTypes.DOOR;
+                                layoutInfo.layOut[ki+1][kj + roomSize / 2 - 1] = extendedRoomTypes.DOOR;
+
+                                layoutInfo.floorLayout[ki+1][kj + roomSize / 2] = extendedRoomTypes.FLOOR;
+                                layoutInfo.floorLayout[ki+1][kj + roomSize / 2 - 1] = extendedRoomTypes.FLOOR;
+
+                                layoutInfo.floorLayout[ki][kj + roomSize / 2] = extendedRoomTypes.FLOOR;
+                                layoutInfo.floorLayout[ki][kj + roomSize / 2 - 1] = extendedRoomTypes.FLOOR;
+
+                                layoutInfo.layOut[ki][kj + roomSize / 2+1] = extendedRoomTypes.WALL;
+                                layoutInfo.layOut[ki][kj + roomSize / 2-2] = extendedRoomTypes.WALL;
+
                             }
                         }
                     }
@@ -76,12 +98,33 @@ public class layout {
                     if (ki / roomSize + 1 < baseSize) {
                         if (base[ki / roomSize + 1][kj / roomSize] != roomTypes.NOTHING) {
                             if (roomSize % 2 == 1) {
-                                layOut[ki + roomSize - 1][kj + roomSize / 2] = extendedRoomTypes.DOOR;
-                                layOut[ki + roomSize - 1][kj + roomSize / 2 + 1] = extendedRoomTypes.DOOR;
-                                layOut[ki + roomSize - 1][kj + roomSize / 2 - 1] = extendedRoomTypes.DOOR;
+                                layoutInfo.layOut[ki + roomSize - 2][kj + roomSize / 2] = extendedRoomTypes.DOOR;
+                                layoutInfo.layOut[ki + roomSize - 2][kj + roomSize / 2 + 1] = extendedRoomTypes.DOOR;
+                                layoutInfo.layOut[ki + roomSize - 2][kj + roomSize / 2 - 1] = extendedRoomTypes.DOOR;
+
+                                layoutInfo.floorLayout[ki + roomSize - 2][kj + roomSize / 2] = extendedRoomTypes.FLOOR;
+                                layoutInfo.floorLayout[ki + roomSize - 2][kj + roomSize / 2 + 1] = extendedRoomTypes.FLOOR;
+                                layoutInfo.floorLayout[ki + roomSize - 2][kj + roomSize / 2 - 1] = extendedRoomTypes.FLOOR;
+
+                                layoutInfo.floorLayout[ki + roomSize - 1][kj + roomSize / 2] = extendedRoomTypes.FLOOR;
+                                layoutInfo.floorLayout[ki + roomSize - 1][kj + roomSize / 2 + 1] = extendedRoomTypes.FLOOR;
+                                layoutInfo.floorLayout[ki + roomSize - 1][kj + roomSize / 2 - 1] = extendedRoomTypes.FLOOR;
+
+                                layoutInfo.layOut[ki + roomSize - 1][kj + roomSize / 2-2] = extendedRoomTypes.WALL;
+                                layoutInfo.layOut[ki + roomSize - 1][kj + roomSize / 2+2] = extendedRoomTypes.WALL;
+
                             } else {
-                                layOut[ki + roomSize - 1][kj + roomSize / 2] = extendedRoomTypes.DOOR;
-                                layOut[ki + roomSize - 1][kj + roomSize / 2 - 1] = extendedRoomTypes.DOOR;
+                                layoutInfo.layOut[ki + roomSize - 2][kj + roomSize / 2] = extendedRoomTypes.DOOR;
+                                layoutInfo.layOut[ki + roomSize - 2][kj + roomSize / 2 - 1] = extendedRoomTypes.DOOR;
+
+                                layoutInfo.floorLayout[ki + roomSize - 2][kj + roomSize / 2] = extendedRoomTypes.FLOOR;
+                                layoutInfo.floorLayout[ki + roomSize - 2][kj + roomSize / 2 - 1] = extendedRoomTypes.FLOOR;
+
+                                layoutInfo.floorLayout[ki + roomSize - 1][kj + roomSize / 2] = extendedRoomTypes.FLOOR;
+                                layoutInfo.floorLayout[ki + roomSize - 1][kj + roomSize / 2 - 1] = extendedRoomTypes.FLOOR;
+
+                                layoutInfo.layOut[ki + roomSize - 1][kj + roomSize / 2+1] = extendedRoomTypes.WALL;
+                                layoutInfo.layOut[ki + roomSize - 1][kj + roomSize / 2 - 2] = extendedRoomTypes.WALL;
                             }
                         }
                     }
@@ -89,12 +132,33 @@ public class layout {
                     if (kj / roomSize - 1 >= 0) {
                         if (base[ki / roomSize][kj / roomSize - 1] != roomTypes.NOTHING) {
                             if (roomSize % 2 == 1) {
-                                layOut[ki + roomSize / 2 + 1][kj] = extendedRoomTypes.DOOR;
-                                layOut[ki + roomSize / 2][kj] = extendedRoomTypes.DOOR;
-                                layOut[ki + roomSize / 2 - 1][kj] = extendedRoomTypes.DOOR;
+                                layoutInfo.layOut[ki + roomSize / 2 + 1][kj+1] = extendedRoomTypes.DOOR;
+                                layoutInfo.layOut[ki + roomSize / 2][kj+1] = extendedRoomTypes.DOOR;
+                                layoutInfo.layOut[ki + roomSize / 2 - 1][kj+1] = extendedRoomTypes.DOOR;
+
+                                layoutInfo.floorLayout[ki + roomSize / 2 + 1][kj+1] = extendedRoomTypes.FLOOR;
+                                layoutInfo.floorLayout[ki + roomSize / 2][kj+1] = extendedRoomTypes.FLOOR;
+                                layoutInfo.floorLayout[ki + roomSize / 2 - 1][kj+1] = extendedRoomTypes.FLOOR;
+
+                                layoutInfo.floorLayout[ki + roomSize / 2 + 1][kj] = extendedRoomTypes.FLOOR;
+                                layoutInfo.floorLayout[ki + roomSize / 2][kj] = extendedRoomTypes.FLOOR;
+                                layoutInfo.floorLayout[ki + roomSize / 2 - 1][kj] = extendedRoomTypes.FLOOR;
+
+                                layoutInfo.layOut[ki + roomSize / 2 + 2][kj] = extendedRoomTypes.WALL;
+                                layoutInfo.layOut[ki + roomSize / 2 - 2][kj] = extendedRoomTypes.WALL;
+
                             } else {
-                                layOut[ki + roomSize / 2][kj] = extendedRoomTypes.DOOR;
-                                layOut[ki + roomSize / 2 - 1][kj] = extendedRoomTypes.DOOR;
+                                layoutInfo.layOut[ki + roomSize / 2][kj+1] = extendedRoomTypes.DOOR;
+                                layoutInfo.layOut[ki + roomSize / 2 - 1][kj+1] = extendedRoomTypes.DOOR;
+
+                                layoutInfo.floorLayout[ki + roomSize / 2][kj+1] = extendedRoomTypes.FLOOR;
+                                layoutInfo.floorLayout[ki + roomSize / 2 - 1][kj+1] = extendedRoomTypes.FLOOR;
+
+                                layoutInfo.floorLayout[ki + roomSize / 2][kj] = extendedRoomTypes.FLOOR;
+                                layoutInfo.floorLayout[ki + roomSize / 2 - 1][kj] = extendedRoomTypes.FLOOR;
+
+                                layoutInfo.layOut[ki + roomSize / 2+1][kj] = extendedRoomTypes.WALL;
+                                layoutInfo.layOut[ki + roomSize / 2 - 2][kj] = extendedRoomTypes.WALL;
                             }
                         }
                     }
@@ -102,12 +166,35 @@ public class layout {
                     if (kj / roomSize + 1 < baseSize) {
                         if (base[ki / roomSize][kj / roomSize + 1] != roomTypes.NOTHING) {
                             if (roomSize % 2 == 1) {
-                                layOut[ki + roomSize / 2 + 1][kj + roomSize - 1] = extendedRoomTypes.DOOR;
-                                layOut[ki + roomSize / 2][kj + roomSize - 1] = extendedRoomTypes.DOOR;
-                                layOut[ki + roomSize / 2 - 1][kj + roomSize - 1] = extendedRoomTypes.DOOR;
+                                layoutInfo.layOut[ki + roomSize / 2 + 1][kj + roomSize - 2] = extendedRoomTypes.DOOR;
+                                layoutInfo.layOut[ki + roomSize / 2][kj + roomSize - 2] = extendedRoomTypes.DOOR;
+                                layoutInfo.layOut[ki + roomSize / 2 - 1][kj + roomSize - 2] = extendedRoomTypes.DOOR;
+
+                                layoutInfo.floorLayout[ki + roomSize / 2 + 1][kj + roomSize - 2] = extendedRoomTypes.FLOOR;
+                                layoutInfo.floorLayout[ki + roomSize / 2][kj + roomSize - 2] = extendedRoomTypes.FLOOR;
+                                layoutInfo.floorLayout[ki + roomSize / 2 - 1][kj + roomSize - 2] = extendedRoomTypes.FLOOR;
+
+                                layoutInfo.floorLayout[ki + roomSize / 2 + 1][kj + roomSize - 1] = extendedRoomTypes.FLOOR;
+                                layoutInfo.floorLayout[ki + roomSize / 2][kj + roomSize - 1] = extendedRoomTypes.FLOOR;
+                                layoutInfo.floorLayout[ki + roomSize / 2 - 1][kj + roomSize - 1] = extendedRoomTypes.FLOOR;
+
+
+                                layoutInfo.layOut[ki + roomSize / 2 + 2][kj + roomSize - 1] = extendedRoomTypes.WALL;
+                                layoutInfo.layOut[ki + roomSize / 2 - 2][kj + roomSize - 1] = extendedRoomTypes.WALL;
+
+
                             } else {
-                                layOut[ki + roomSize / 2][kj + roomSize - 1] = extendedRoomTypes.DOOR;
-                                layOut[ki + roomSize / 2 - 1][kj + roomSize - 1] = extendedRoomTypes.DOOR;
+                                layoutInfo.layOut[ki + roomSize / 2][kj + roomSize - 2] = extendedRoomTypes.DOOR;
+                                layoutInfo.layOut[ki + roomSize / 2 - 1][kj + roomSize - 2] = extendedRoomTypes.DOOR;
+
+                                layoutInfo.floorLayout[ki + roomSize / 2][kj + roomSize - 2] = extendedRoomTypes.FLOOR;
+                                layoutInfo.floorLayout[ki + roomSize / 2 - 1][kj + roomSize - 2] = extendedRoomTypes.FLOOR;
+
+                                layoutInfo.floorLayout[ki + roomSize / 2][kj + roomSize - 1] = extendedRoomTypes.FLOOR;
+                                layoutInfo.floorLayout[ki + roomSize / 2 - 1][kj + roomSize - 1] = extendedRoomTypes.FLOOR;
+
+                                layoutInfo.layOut[ki + roomSize / 2+1][kj + roomSize - 1] = extendedRoomTypes.WALL;
+                                layoutInfo.layOut[ki + roomSize / 2 - 2][kj + roomSize - 1] = extendedRoomTypes.WALL;
                             }
                         }
                     }
@@ -115,26 +202,26 @@ public class layout {
 
                     //adaugare chest-uri
                     if (currentRoom == roomTypes.CHEST) {
-                        layOut[ki + roomSize / 2][kj + roomSize/2] = extendedRoomTypes.CHEST;
+                        layoutInfo.layOut[ki + roomSize / 2][kj + roomSize/2] = extendedRoomTypes.CHEST;
                     }
 
                     //adaugare cheie
                     if(currentRoom==roomTypes.KEY)
                     {
-                        layOut[ki + roomSize / 2][kj + roomSize/2] = extendedRoomTypes.KEY;
+                        layoutInfo.layOut[ki + roomSize / 2][kj + roomSize/2] = extendedRoomTypes.KEY;
                     }
 
                     //adaugare iesire
 
                     if(currentRoom==roomTypes.EXIT)
                     {
-                        layOut[ki + roomSize / 2][kj + roomSize/2] = extendedRoomTypes.EXIT;
+                        layoutInfo.layOut[ki + roomSize / 2][kj + roomSize/2] = extendedRoomTypes.EXIT;
                     }
 
                     //adaugare intrare
                     if(currentRoom==roomTypes.ENTRANCE)
                     {
-                        layOut[ki + roomSize / 2][kj + roomSize/2] = extendedRoomTypes.ENTRANCE;
+                        layoutInfo.layOut[ki + roomSize / 2][kj + roomSize/2] = extendedRoomTypes.ENTRANCE;
                     }
 
 
@@ -146,10 +233,10 @@ public class layout {
                     while(enemiesCount!=0)
                     {
                         mapCoordinates randomCoordinates;
-                        randomCoordinates=new mapCoordinates(Rand.Range(ki+2,ki+roomSize-2), Rand.Range(kj+2,kj+roomSize-2));
+                        randomCoordinates=new mapCoordinates(Rand.Range(ki+3,ki+roomSize-3), Rand.Range(kj+3,kj+roomSize-3));
 
-                        if(layOut[randomCoordinates.x][randomCoordinates.y]==extendedRoomTypes.NOTHING) {
-                            layOut[randomCoordinates.x][randomCoordinates.y] = extendedRoomTypes.ENEMY;
+                        if(layoutInfo.layOut[randomCoordinates.x][randomCoordinates.y]==extendedRoomTypes.NOTHING) {
+                            layoutInfo.layOut[randomCoordinates.x][randomCoordinates.y] = extendedRoomTypes.ENEMY;
                             enemiesCount--;
                         }
                     }
@@ -159,11 +246,11 @@ public class layout {
     }
 
     public void print() {
-        for (int i = 0; i < layOut.length; i++) {
-            for (int j = 0; j < layOut.length; j++) {
+        for (int i = 0; i < layoutInfo.layOut.length; i++) {
+            for (int j = 0; j < layoutInfo.layOut.length; j++) {
 
-                if(layOut[i][j]!=extendedRoomTypes.NOTHING) {
-                    switch (layOut[i][j]) {
+                if(layoutInfo.layOut[i][j]!=extendedRoomTypes.NOTHING) {
+                    switch (layoutInfo.layOut[i][j]) {
                         case WALL: {
                             System.out.print("■  ");
                             break;
@@ -206,7 +293,7 @@ public class layout {
                 }
                 else
                 {
-                    if(floorLayout[i][j]==extendedRoomTypes.FLOOR)
+                    if(layoutInfo.floorLayout[i][j]==extendedRoomTypes.FLOOR)
                     {
                         System.out.print(".  ");
                     }
@@ -219,6 +306,11 @@ public class layout {
             }
             System.out.println();
         }
+    }
+
+    public LayoutInfo getLayoutInfo()
+    {
+        return layoutInfo;
     }
 }
 

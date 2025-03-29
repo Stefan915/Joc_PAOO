@@ -12,6 +12,7 @@ public class Window
     Thread gameThread;
     public boolean gameIsRunning=true;
     gamePanel panel;
+    static public int tileSizeInPixels=15;
 
     public void initWindow(String nume)
     {
