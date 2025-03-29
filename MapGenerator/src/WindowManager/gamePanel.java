@@ -1,5 +1,8 @@
 package WindowManager;
 
+import Camera.CameraManager;
+import DataStructures.Vector2;
+import Input.InputManager;
 import MapGeneration.*;
 import Player.PlayerManager;
 import Time.Time;
@@ -10,13 +13,13 @@ import java.io.IOException;
 
 public class gamePanel extends JPanel implements Runnable {
 
+    CameraManager camera=new CameraManager();
     public boolean gameIsRunning = true;
     PlayerManager player = new PlayerManager();
     MapRenderer mapRenderer=new MapRenderer();
-
+    InputManager inputManager = new InputManager();
     @Override
     public void run() {
-
 
         try {
             Start();
@@ -24,13 +27,11 @@ public class gamePanel extends JPanel implements Runnable {
             throw new RuntimeException(e);
         }
 
-
         while (gameIsRunning) {
             Time.setStartTime();
 
             Update();
             repaint();
-            System.out.println(Time.FPS);
             Time.setEndTime();
             Time.calculateDelta();
         }
@@ -46,15 +47,19 @@ public class gamePanel extends JPanel implements Runnable {
         generator.generateMap();
         mapInfo = generator.getMap();
         mapInfo.printMap();
-        map = new layout(14, mapInfo._map, 2, 5);
+        map = new layout(17, mapInfo._map, 2, 5);
         map.print();
 
         layoutInfo=map.getLayoutInfo();
         mapRenderer.initRenderer(layoutInfo);
+
+        player.position=new Vector2(layoutInfo.entrancePosition.x*Window.tileSizeInPixels-Window.screenSize.width/2,layoutInfo.entrancePosition.y*Window.tileSizeInPixels-Window.screenSize.height/2);
+
     }
 
     public void Update() {
         player.Update();
+        camera.Update();
     }
 
 
@@ -62,12 +67,9 @@ public class gamePanel extends JPanel implements Runnable {
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         Graphics2D graphics2D = (Graphics2D) graphics;
-
-        player.draw(graphics2D);
         mapRenderer.draw(graphics2D);
+        player.draw(graphics2D);
 
         graphics2D.dispose();
     }
-
-
 }

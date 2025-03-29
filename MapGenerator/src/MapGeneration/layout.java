@@ -1,4 +1,5 @@
 package MapGeneration;
+import DataStructures.Vector2;
 import Mathf.Rand;
 
 enum extendedRoomTypes
@@ -27,7 +28,7 @@ public class layout {
 
         layoutInfo.layOut = new extendedRoomTypes[roomSize * baseSize][roomSize * baseSize];
         layoutInfo.floorLayout = new extendedRoomTypes[roomSize * baseSize][roomSize * baseSize];
-
+        layoutInfo.entrancePosition=new Vector2(0,0);
         for(int i=0;i<roomSize*baseSize;i++)
         {
             for(int j=0;j<roomSize*baseSize;j++)
@@ -221,6 +222,9 @@ public class layout {
                     //adaugare intrare
                     if(currentRoom==roomTypes.ENTRANCE)
                     {
+                        layoutInfo.entrancePosition.x=ki + roomSize / 2;
+                        layoutInfo.entrancePosition.y=kj + roomSize/2;
+
                         layoutInfo.layOut[ki + roomSize / 2][kj + roomSize/2] = extendedRoomTypes.ENTRANCE;
                     }
 

@@ -25,8 +25,8 @@ public class MapRenderer implements I_imageContainer
     private List<Floor> floors=new ArrayList<Floor>();
     private List<Door> doors=new ArrayList<Door>();
     private List<Chest> chests=new ArrayList<Chest>();
-    private Key key;
-    private Exit exit;
+    private Key key=new Key(new StaticObjectPosition(0,0));
+    private Exit exit=new Exit(new StaticObjectPosition(0,0));
 
 
 
@@ -48,7 +48,7 @@ public class MapRenderer implements I_imageContainer
 
                 if(current==extendedRoomTypes.WALL) {
                     Wall newWall;
-                    newWall = new Wall(new StaticObjectPosition(i, j));
+                    newWall = new Wall(new StaticObjectPosition(j, i));
                     newWall.setImage(wall_up_left_right);
                     walls.add(newWall);
                 }
@@ -56,7 +56,7 @@ public class MapRenderer implements I_imageContainer
                 if(current==extendedRoomTypes.DOOR)
                 {
                     Door newDoor;
-                    newDoor=new Door(new StaticObjectPosition(i, j));
+                    newDoor=new Door(new StaticObjectPosition(j, i));
                     newDoor.setImage(doorSprite);
                     doors.add(newDoor);
                 }
@@ -64,20 +64,21 @@ public class MapRenderer implements I_imageContainer
                 if(current==extendedRoomTypes.CHEST)
                 {
                     Chest newChest;
-                    newChest=new Chest(new StaticObjectPosition(i, j));
+                    newChest=new Chest(new StaticObjectPosition(j, i));
                     newChest.setImage(chestSprite);
                     chests.add(newChest);
                 }
 
                 if(current==extendedRoomTypes.KEY)
                 {
-                    key=new Key(new StaticObjectPosition(i, j));
+                    System.out.println("got the key");
+                    key=new Key(new StaticObjectPosition(j, i));
                     key.setImage(keySprite);
                 }
 
                 if(current==extendedRoomTypes.EXIT)
                 {
-                    exit=new Exit(new StaticObjectPosition(i, j));
+                    exit=new Exit(new StaticObjectPosition(j, i));
                     exit.setImage(exitSprite);
                 }
 
@@ -86,7 +87,7 @@ public class MapRenderer implements I_imageContainer
                 if(current==extendedRoomTypes.FLOOR)
                 {
                     Floor newFloor;
-                    newFloor=new Floor(new StaticObjectPosition(i, j));
+                    newFloor=new Floor(new StaticObjectPosition(j, i));
                     newFloor.setImage(floorSprite);
                     floors.add(newFloor);
                 }

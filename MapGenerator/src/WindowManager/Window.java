@@ -8,11 +8,11 @@ import java.awt.*;
 public class Window
 {
     JFrame window;
-    Dimension screenSize;
+    static public Dimension screenSize;
     Thread gameThread;
     public boolean gameIsRunning=true;
     gamePanel panel;
-    static public int tileSizeInPixels=15;
+    static public int tileSizeInPixels=70;
 
     public void initWindow(String nume)
     {
@@ -31,7 +31,15 @@ public class Window
         screenSize=Toolkit.getDefaultToolkit().getScreenSize();
         window.setPreferredSize(screenSize);
 
+        //adauagare listener de key press
+        window.addKeyListener(panel.inputManager);
+        window.setFocusable(true);
+
+
+
         window.add(panel);
+
+        panel.setBackground(Color.black);
 
         //aplicare setari
         window.pack();
