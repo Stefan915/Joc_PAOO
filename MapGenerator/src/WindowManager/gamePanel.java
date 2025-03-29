@@ -24,7 +24,7 @@ public class gamePanel extends JPanel implements Runnable {
 
     private long valueToSleepAfterFrame;
     Double valueToSleepAfterFrame_double;
-    private double FPSlimit=120;
+    private double FPSlimit=60;
     @Override
     public void run() {
 
@@ -41,7 +41,7 @@ public class gamePanel extends JPanel implements Runnable {
 
             Update();
             repaint();
-            System.out.println(Time.FPS);
+            //System.out.println(Time.FPS);
 
             Time.setEndTime();
             Time.calculateFrameTime();
