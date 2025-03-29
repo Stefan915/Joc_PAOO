@@ -10,7 +10,6 @@ public class Rand
         int randomNumber;
 
         randomNumber=rand.nextInt(min,max);
-        System.out.println("test");
         return randomNumber;
     }
 }
