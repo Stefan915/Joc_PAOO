@@ -69,6 +69,4 @@ public class PlayerManager extends Entity implements I_imageContainer, StandardB
         BufferedImage currentFrame;
         graphics2D.drawImage(downFrames.get(0), Window.screenSize.width/2-Window.tileSizeInPixels/2,Window.screenSize.height/2-Window.tileSizeInPixels/2,Window.tileSizeInPixels,Window.tileSizeInPixels,null);
     }
-
-
 }

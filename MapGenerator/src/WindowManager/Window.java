@@ -14,6 +14,8 @@ public class Window
     gamePanel panel;
     static public int tileSizeInPixels=70;
 
+    Color backgroundColor=new Color(34,20,26);
+
     public void initWindow(String nume)
     {
         panel=new gamePanel();
@@ -39,7 +41,7 @@ public class Window
 
         window.add(panel);
 
-        panel.setBackground(Color.black);
+        panel.setBackground(backgroundColor);
 
         //aplicare setari
         window.pack();
