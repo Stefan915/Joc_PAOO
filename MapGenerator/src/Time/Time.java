@@ -5,29 +5,45 @@ import java.security.PublicKey;
 public class Time
 {
     static public double deltaTime;
-    static private long startTime;
-    static private long endTime;
-    public static double gameTime;
-    static public double FPS;
+    static private double startTimeDelta;
+    static private double endTimeDelta;
+
+    static public double frameTime;
+    static private long startTimeFrame;
+    static private long endTimeFrame;
+
 
 
 
     static public void setStartTime()
     {
-        startTime=System.nanoTime();
+        startTimeFrame=System.nanoTime();
     }
 
     static public void setEndTime()
     {
-        endTime=System.nanoTime();
+        endTimeFrame=System.nanoTime();
+    }
+
+    static public void calculateFrameTime()
+    {
+        frameTime=(endTimeFrame-startTimeFrame)/1000000000f;
+    }
+
+
+    static public void setStartTimeDelta()
+    {
+        startTimeDelta=System.nanoTime();
+    }
+
+    static public void setEndTimeDelta()
+    {
+        endTimeDelta=System.nanoTime();
     }
 
     static public void calculateDelta()
     {
-        deltaTime=(endTime-startTime)/1000000000f;
-        gameTime+=deltaTime;
-        FPS=1/deltaTime;
+        deltaTime=(endTimeDelta-startTimeDelta)/1000000000;
     }
-
 
 }

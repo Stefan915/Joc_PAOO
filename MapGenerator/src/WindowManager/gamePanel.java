@@ -11,6 +11,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
+import static java.lang.Thread.sleep;
+
 public class gamePanel extends JPanel implements Runnable {
 
     CameraManager camera=new CameraManager();
@@ -29,10 +31,19 @@ public class gamePanel extends JPanel implements Runnable {
 
         while (gameIsRunning) {
             Time.setStartTime();
+            Time.setStartTimeDelta();
 
             Update();
             repaint();
             Time.setEndTime();
+            Time.calculateFrameTime();
+            try {
+                sleep(16);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println(1/Time.deltaTime);
+            Time.setEndTimeDelta();
             Time.calculateDelta();
         }
     }
