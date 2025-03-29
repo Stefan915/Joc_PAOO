@@ -20,6 +20,11 @@ public class gamePanel extends JPanel implements Runnable {
     PlayerManager player = new PlayerManager();
     MapRenderer mapRenderer=new MapRenderer();
     InputManager inputManager = new InputManager();
+
+
+    private long valueToSleepAfterFrame;
+    Double valueToSleepAfterFrame_double;
+    private double FPSlimit=120;
     @Override
     public void run() {
 
@@ -33,16 +38,23 @@ public class gamePanel extends JPanel implements Runnable {
             Time.setStartTime();
             Time.setStartTimeDelta();
 
+
             Update();
             repaint();
+            System.out.println(Time.FPS);
+
             Time.setEndTime();
             Time.calculateFrameTime();
-            try {
-                sleep(16);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+
+            valueToSleepAfterFrame_double=((double )1/FPSlimit-Time.frameTime)*1000;
+            valueToSleepAfterFrame= valueToSleepAfterFrame_double.longValue();
+            if(valueToSleepAfterFrame>=0) {
+                try {
+                    sleep(valueToSleepAfterFrame);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
-            System.out.println(1/Time.deltaTime);
             Time.setEndTimeDelta();
             Time.calculateDelta();
         }

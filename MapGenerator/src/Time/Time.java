@@ -12,6 +12,8 @@ public class Time
     static private long startTimeFrame;
     static private long endTimeFrame;
 
+    static public double FPS;
+
 
 
 
@@ -44,6 +46,7 @@ public class Time
     static public void calculateDelta()
     {
         deltaTime=(endTimeDelta-startTimeDelta)/1000000000;
+        FPS=1/deltaTime;
     }
 
 }
