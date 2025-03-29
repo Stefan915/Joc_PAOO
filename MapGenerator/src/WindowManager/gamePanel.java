@@ -70,13 +70,13 @@ public class gamePanel extends JPanel implements Runnable {
         generator.generateMap();
         mapInfo = generator.getMap();
         mapInfo.printMap();
-        map = new layout(17, mapInfo._map, 2, 5);
+        map = new layout(19, mapInfo._map, 2, 5);
         map.print();
 
         layoutInfo=map.getLayoutInfo();
         mapRenderer.initRenderer(layoutInfo);
 
-        player.position=new Vector2(layoutInfo.entrancePosition.x*Window.tileSizeInPixels-Window.screenSize.width/2,layoutInfo.entrancePosition.y*Window.tileSizeInPixels-Window.screenSize.height/2);
+        player.position=new Vector2(layoutInfo.entrancePosition.x*Window.tileSizeInPixels-Window.screenSize.width/2 ,layoutInfo.entrancePosition.y*Window.tileSizeInPixels-Window.screenSize.height/2);
 
     }
 

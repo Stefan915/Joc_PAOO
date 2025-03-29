@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class MapRenderer implements I_imageContainer
 {
@@ -34,10 +35,10 @@ public class MapRenderer implements I_imageContainer
     BufferedImage doorLeftSprite;
 
 
-    private List<Wall> walls=new ArrayList<Wall>();
-    private List<Floor> floors=new ArrayList<Floor>();
-    private List<Door> doors=new ArrayList<Door>();
-    private List<Chest> chests=new ArrayList<Chest>();
+    private final List<Wall> walls=new ArrayList<Wall>();
+    private final List<Floor> floors=new ArrayList<Floor>();
+    private final List<Door> doors=new ArrayList<Door>();
+    private final List<Chest> chests=new ArrayList<Chest>();
     private Key key=new Key(new StaticObjectPosition(0,0));
     private Exit exit=new Exit(new StaticObjectPosition(0,0));
 
@@ -189,27 +190,27 @@ public class MapRenderer implements I_imageContainer
 
     @Override
     public void loadImages() throws IOException {
-        doorSprite=ImageIO.read(getClass().getResourceAsStream("/Player/door.png"));
-        chestSprite=ImageIO.read(getClass().getResourceAsStream("/Player/chest.png"));
-        keySprite=ImageIO.read(getClass().getResourceAsStream("/Player/key.png"));
-        exitSprite=ImageIO.read(getClass().getResourceAsStream("/Player/exit.png"));
+        doorSprite=ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/door.png")));
+        chestSprite=ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/chest.png")));
+        keySprite=ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/key.png")));
+        exitSprite=ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/exit.png")));
 
-        wallUpSprite=ImageIO.read(getClass().getResourceAsStream("/Walls/wallUp.png"));
-        wallDownSprite=ImageIO.read(getClass().getResourceAsStream("/Walls/wallDown.png"));
-        wallRightSprite=ImageIO.read(getClass().getResourceAsStream("/Walls/wallLeft.png"));
-        wallLeftSprite=ImageIO.read(getClass().getResourceAsStream("/Walls/wallRight.png"));
-        wallCornerOuterDownLeft=ImageIO.read(getClass().getResourceAsStream("/Walls/wallCornerOuterDownLeft.png"));
-        wallCornerOuterDownRight=ImageIO.read(getClass().getResourceAsStream("/Walls/wallCornerOuterDownRight.png"));
-        wallCornerInnerDownLeft=ImageIO.read(getClass().getResourceAsStream("/Walls/wallCornerInnerDownLeft.png"));
-        wallCornerInnerDownRight=ImageIO.read(getClass().getResourceAsStream("/Walls/wallCornerInnerDownRight.png"));
+        wallUpSprite=ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Walls/wallUp.png")));
+        wallDownSprite=ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Walls/wallDown.png")));
+        wallRightSprite=ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Walls/wallLeft.png")));
+        wallLeftSprite=ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Walls/wallRight.png")));
+        wallCornerOuterDownLeft=ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Walls/wallCornerOuterDownLeft.png")));
+        wallCornerOuterDownRight=ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Walls/wallCornerOuterDownRight.png")));
+        wallCornerInnerDownLeft=ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Walls/wallCornerInnerDownLeft.png")));
+        wallCornerInnerDownRight=ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Walls/wallCornerInnerDownRight.png")));
 
-        doorUpSprite=ImageIO.read(getClass().getResourceAsStream("/Doors/doorUp.png"));
-        doorLeftSprite=ImageIO.read(getClass().getResourceAsStream("/Doors/doorLeft.png"));
+        doorUpSprite=ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Doors/doorUp.png")));
+        doorLeftSprite=ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Doors/doorLeft.png")));
 
-        for(Integer i=1;i<=6;i++)
+        for(int i = 1; i<=6; i++)
         {
-            System.out.println("/Walls/floor"+i.toString()+".png");
-            floorsSprites.add(ImageIO.read(getClass().getResourceAsStream("/Floors/floor"+i.toString()+".png")));
+            System.out.println("/Walls/floor"+ Integer.toString(i) +".png");
+            floorsSprites.add(ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Floors/floor" + Integer.toString(i) + ".png"))));
         }
     }
 
@@ -235,22 +236,7 @@ public class MapRenderer implements I_imageContainer
         {
             chest.draw(graphics2D);
         }
-//        for (int y = layoutInfo.layOut.length - 1; y >= 0; y--) {
-//            for (int x = layoutInfo.layOut.length - 1; x >= 0; x--) {
-//                BufferedImage tileImage = floorSprite;
-//                if(layoutInfo.floorLayout[y][x] == extendedRoomTypes.FLOOR){
-//                    StaticObject obj = new StaticObject(new StaticObjectPosition(x,y));
-//                    obj.setImage(tileImage);
-//                    obj.draw(graphics2D);
-//                }
-//            }
-//        }
-//        for (int y = layoutInfo.layOut.length - 1; y >= 0; y--) {
-//            for (int x = layoutInfo.layOut.length - 1; x >= 0; x--) {
-//                StaticObject obj = getStaticObject(y, x);
-//                obj.draw(graphics2D);
-//            }
-//        }
+
         key.draw(graphics2D);
         exit.draw(graphics2D);
     }

@@ -28,7 +28,7 @@ enum extendedRoomTypes
 }
 
 public class layout {
-    private LayoutInfo layoutInfo;
+    private final LayoutInfo layoutInfo;
 
     public layout(int roomSize, roomTypes[][] base, int enemiesPerRoomMin, int enemiesPerRoomMax) {
         int baseSize = base[0].length;
@@ -76,7 +76,6 @@ public class layout {
                                     layoutInfo.layOut[i][j] = extendedRoomTypes.WALLCIDR;
                                 if( i + 1 == ki + roomSize-1 && j== kj+1)
                                     layoutInfo.layOut[i][j] = extendedRoomTypes.WALLCIDL;
-
                             }
                             else
                             {

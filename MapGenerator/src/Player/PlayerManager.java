@@ -6,6 +6,8 @@ import Interfaces.I_imageContainer;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Objects;
+
 import Entities.Entity;
 import Interfaces.StandardBehaviour;
 import Time.Time;
@@ -56,7 +58,7 @@ public class PlayerManager extends Entity implements I_imageContainer, StandardB
     {
         try
         {
-            downFrames.add(ImageIO.read(getClass().getResourceAsStream("/Player/player.png")));
+            downFrames.add(ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player.png"))));
         }
         catch(IOException exception)
         {
@@ -67,6 +69,6 @@ public class PlayerManager extends Entity implements I_imageContainer, StandardB
     public void draw(Graphics2D graphics2D)
     {
         BufferedImage currentFrame;
-        graphics2D.drawImage(downFrames.get(0), Window.screenSize.width/2-Window.tileSizeInPixels/2,Window.screenSize.height/2-Window.tileSizeInPixels/2,Window.tileSizeInPixels,Window.tileSizeInPixels,null);
+        graphics2D.drawImage(downFrames.getFirst(), Window.screenSize.width/2-Window.tileSizeInPixels/2,Window.screenSize.height/2-Window.tileSizeInPixels/2,Window.tileSizeInPixels,Window.tileSizeInPixels,null);
     }
 }
