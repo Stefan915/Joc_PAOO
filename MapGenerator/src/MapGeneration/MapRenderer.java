@@ -1,7 +1,9 @@
 package MapGeneration;
 
+import Camera.CameraManager;
 import Interfaces.I_imageContainer;
 import StaticObjects.*;
+import WindowManager.Window;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -110,27 +112,57 @@ public class MapRenderer implements I_imageContainer
     @Override
     public void draw(Graphics2D graphics2D) {
 
-        for(Floor floor:floors)
-        {
-            floor.draw(graphics2D);
+//        for(Floor floor:floors)
+//        {
+//            floor.draw(graphics2D);
+//        }
+//
+//        for(Wall wall:walls)
+//        {
+//            wall.draw(graphics2D);
+//        }
+//
+//        for(Door door:doors)
+//        {
+//            door.draw(graphics2D);
+//        }
+//
+//        for(Chest chest:chests)
+//        {
+//            chest.draw(graphics2D);
+//        }
+        for (int y = layoutInfo.layOut.length - 1; y >= 0; y--) {
+            for (int x = layoutInfo.layOut.length - 1; x >= 0; x--) {
+                BufferedImage tileImage = floorSprite;
+                if(layoutInfo.floorLayout[y][x] == extendedRoomTypes.FLOOR){
+                    StaticObject obj = new StaticObject(new StaticObjectPosition(x,y));
+                    obj.setImage(tileImage);
+                    obj.draw(graphics2D);
+                }
+            }
         }
-
-        for(Wall wall:walls)
-        {
-            wall.draw(graphics2D);
+        for (int y = layoutInfo.layOut.length - 1; y >= 0; y--) {
+            for (int x = layoutInfo.layOut.length - 1; x >= 0; x--) {
+                StaticObject obj = getStaticObject(y, x);
+                obj.draw(graphics2D);
+            }
         }
-
-        for(Door door:doors)
-        {
-            door.draw(graphics2D);
-        }
-
-        for(Chest chest:chests)
-        {
-            chest.draw(graphics2D);
-        }
-
         key.draw(graphics2D);
         exit.draw(graphics2D);
+    }
+
+    private StaticObject getStaticObject(int y, int x) {
+        BufferedImage tileImage = switch (layoutInfo.layOut[y][x]) {
+            case WALL -> wall_up_left_right;
+            case FLOOR -> floorSprite;
+            case DOOR -> doorSprite;
+            case CHEST -> chestSprite;
+            case KEY -> keySprite;
+            case EXIT -> exitSprite;
+            default -> null;
+        };
+        StaticObject obj = new StaticObject(new StaticObjectPosition(x, y));
+        obj.setImage(tileImage);
+        return obj;
     }
 }
