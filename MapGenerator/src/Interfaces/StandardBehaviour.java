@@ -1,7 +1,16 @@
 package Interfaces;
 
+import java.io.IOException;
+
 public interface StandardBehaviour
 {
-    public void Start();
-    public void Update();
+    default public void Start() throws IOException
+    {
+
+    }
+    default public void Update()
+    {
+
+    }
+
 }

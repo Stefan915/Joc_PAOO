@@ -1,5 +1,6 @@
 package WindowManager;
 
+import Input.InputManager;
 import Interfaces.StandardBehaviour;
 
 import javax.swing.*;
@@ -34,7 +35,7 @@ public class Window
         window.setPreferredSize(screenSize);
 
         //adauagare listener de key press
-        window.addKeyListener(panel.inputManager);
+        window.addKeyListener(InputManager.instance);
         window.setFocusable(true);
 
 

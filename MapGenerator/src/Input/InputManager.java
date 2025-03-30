@@ -9,7 +9,7 @@ public class InputManager implements KeyListener
     static public boolean downPressed;
     static public boolean leftPressed;
     static public boolean rightPressed;
-
+    static public InputManager instance=new InputManager();
 
     @Override
     public void keyTyped(KeyEvent event) {
