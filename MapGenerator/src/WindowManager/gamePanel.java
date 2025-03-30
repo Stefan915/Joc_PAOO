@@ -51,7 +51,7 @@ public class gamePanel extends JPanel implements Runnable {
 
     public void Start() throws IOException {
         VignetteGenerator.createVignette("v.png",Window.screenSize.width,Window.screenSize.height, 30);
-        ScenesManager.instance.setCurrentActiveScene(allScenes.MENU);
+        ScenesManager.instance.setCurrentActiveScene(allScenes.GAME);
     }
 
     public void Update() throws IOException {
