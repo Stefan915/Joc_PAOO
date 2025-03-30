@@ -1,6 +1,7 @@
 package WindowManager;
 
 import Camera.CameraManager;
+import Camera.VignetteGenerator;
 import DataStructures.Vector2;
 import Input.InputManager;
 import Interfaces.StandardBehaviour;
@@ -49,6 +50,7 @@ public class gamePanel extends JPanel implements Runnable {
     }
 
     public void Start() throws IOException {
+        VignetteGenerator.createVignette("v.png",Window.screenSize.width,Window.screenSize.height, 30);
         ScenesManager.instance.setCurrentActiveScene(allScenes.MENU);
     }
 
@@ -65,7 +67,7 @@ public class gamePanel extends JPanel implements Runnable {
         Graphics2D graphics2D = (Graphics2D) graphics;
 
         ScenesManager.instance.renderCurrentScene(graphics2D);
-
+        VignetteGenerator vGen = new VignetteGenerator();
         graphics2D.dispose();
     }
 }

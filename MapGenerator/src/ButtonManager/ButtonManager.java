@@ -17,11 +17,9 @@ public class ButtonManager implements I_imageContainer, StandardBehaviour
     public int hoverFontSize;
     public Color color=Color.white;
     private boolean isHovered;
-
+    private String auxButText;
     private Vector2 centeredPosition=new Vector2(0,0);
     private Vector2 centeredPositionSize=new Vector2(0,0);
-
-
     public ButtonManager(String buttonText,Vector2 position,Vector2 backgroundSize,int fontSize,int hoverFontSize)
     {
         this.buttonText=buttonText;
@@ -40,31 +38,51 @@ public class ButtonManager implements I_imageContainer, StandardBehaviour
 
 
 
-        if(InputManager.mousePosition.x>= centeredPosition.x && InputManager.mousePosition.x <= centeredPosition.x+ centeredPositionSize.x)
+        if(InputManager.mousePosition.x>= centeredPosition.x && InputManager.mousePosition.x <= centeredPosition.x+ centeredPositionSize.x
+                && InputManager.mousePosition.y>= centeredPosition.y - centeredPositionSize.y && InputManager.mousePosition.y <= centeredPosition.y && !isHovered)
         {
             currentFontSize=hoverFontSize;
+            auxButText = buttonText;
+            buttonText = "> " + buttonText + " <";
+
+            isHovered = true;
         }
-        else
+        else//
+             if(InputManager.mousePosition.x< centeredPosition.x || InputManager.mousePosition.x > centeredPosition.x+ centeredPositionSize.x
+                || InputManager.mousePosition.y < centeredPosition.y - centeredPositionSize.y || InputManager.mousePosition.y > centeredPosition.y && isHovered)
         {
             currentFontSize=fontSize;
+            buttonText = auxButText;
+            isHovered = false;
         }
 
 
     }
 
     @Override
-    public void draw(Graphics2D graphics2D)
-    {
-        graphics2D.setFont(new Font("Arial",Font.BOLD,currentFontSize));
-        graphics2D.setColor(Color.white);
-        FontMetrics metrics = graphics2D.getFontMetrics();
-        centeredPosition.x=(float)position.x-metrics.stringWidth(buttonText)/2;
-        centeredPosition.y=(float)position.y+currentFontSize/2;
+    public void draw(Graphics2D graphics2D) {
+        if (!isHovered) {
+            graphics2D.setFont(new Font("Arial", Font.BOLD, currentFontSize));
+            graphics2D.setColor(Color.white);
+            FontMetrics metrics = graphics2D.getFontMetrics();
+            centeredPosition.x = (float) position.x - metrics.stringWidth(buttonText) / 2;
+            centeredPosition.y = (float) position.y + currentFontSize / 2;
 
-        centeredPositionSize.x=metrics.stringWidth(buttonText);
-        centeredPositionSize.y=currentFontSize;
+            centeredPositionSize.x = metrics.stringWidth(buttonText);
+            centeredPositionSize.y = currentFontSize;
 
-        graphics2D.drawString(buttonText,(float)centeredPosition.x,(float)centeredPosition.y);
+            graphics2D.drawString(buttonText, (float) centeredPosition.x, (float) centeredPosition.y);
+        }else{
+            graphics2D.setFont(new Font("Arial", Font.BOLD, currentFontSize));
+            graphics2D.setColor(Color.red);
+            FontMetrics metrics = graphics2D.getFontMetrics();
+            centeredPosition.x = (float) position.x - metrics.stringWidth(buttonText) / 2;
+            centeredPosition.y = (float) position.y + currentFontSize / 2;
+            centeredPositionSize.x = metrics.stringWidth(buttonText);
+            centeredPositionSize.y = currentFontSize;
+
+            graphics2D.drawString(buttonText, (float) centeredPosition.x, (float) centeredPosition.y);
+        }
     }
 
 }
