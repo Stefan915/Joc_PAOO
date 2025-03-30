@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class MenuScene extends Scene{
 
-    ButtonManager playButton =new ButtonManager("PLAY",new Vector2(100,100),new Vector2(100,100),100);
+    ButtonManager playButton =new ButtonManager("PLAY ",new Vector2((float)Window.screenSize.width/2,(float)Window.screenSize.height/2),new Vector2(100,100),100,120);
     @Override
     public void Start() throws IOException {
 
@@ -18,7 +18,7 @@ public class MenuScene extends Scene{
 
     @Override
     public void Update() {
-
+        playButton.Update();
     }
 
     @Override
@@ -27,7 +27,6 @@ public class MenuScene extends Scene{
 
     @Override
     public void draw(Graphics2D graphics2D) {
-        graphics2D.drawString("PLAY",Window.screenSize.width/2,Window.screenSize.height/2);
         playButton.draw(graphics2D);
     }
 

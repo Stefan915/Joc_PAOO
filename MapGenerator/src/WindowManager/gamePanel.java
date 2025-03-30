@@ -39,7 +39,11 @@ public class gamePanel extends JPanel implements Runnable {
         }
 
         while(gameIsRunning) {
-            Update();
+            try {
+                Update();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             repaint();
         }
     }
@@ -48,9 +52,10 @@ public class gamePanel extends JPanel implements Runnable {
         ScenesManager.instance.setCurrentActiveScene(allScenes.MENU);
     }
 
-    public void Update() {
+    public void Update() throws IOException {
 
         ScenesManager.instance.runCurrentScene();
+        inputManager.Update();
     }
 
 

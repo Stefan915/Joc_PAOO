@@ -85,7 +85,7 @@ public class GameScene extends Scene
 
     @Override
     public void draw(Graphics2D graphics2D) {
-        System.out.println("drawingGame");
+
         mapRenderer.draw(graphics2D);
         player.draw(graphics2D);
     }
