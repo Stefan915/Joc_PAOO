@@ -13,7 +13,7 @@ public class Window
     Thread gameThread;
     public boolean gameIsRunning=true;
     gamePanel panel;
-    static public int tileSizeInPixels=70;
+    static private int tileSizeInPixels=70;
 
     Color backgroundColor=new Color(34,20,26);
 
@@ -56,5 +56,12 @@ public class Window
     {
         gameThread=new Thread(panel);
         gameThread.start();
+    }
+
+    static public int getTileSizeInPixels()
+    {
+        Double doubleValue;
+        doubleValue=tileSizeInPixels*(screenSize.height/1080.0);
+        return doubleValue.intValue();
     }
 }

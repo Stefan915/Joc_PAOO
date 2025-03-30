@@ -42,7 +42,7 @@ public class GameScene extends Scene
         layoutInfo=map.getLayoutInfo();
         mapRenderer.initRenderer(layoutInfo);
 
-        player.position=new Vector2(layoutInfo.entrancePosition.x* Window.tileSizeInPixels-Window.screenSize.width/2 ,layoutInfo.entrancePosition.y*Window.tileSizeInPixels-Window.screenSize.height/2);
+        player.position=new Vector2(layoutInfo.entrancePosition.x* Window.getTileSizeInPixels()-Window.screenSize.width/2 ,layoutInfo.entrancePosition.y*Window.getTileSizeInPixels()-Window.screenSize.height/2);
 
 
     }

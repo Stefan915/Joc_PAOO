@@ -36,19 +36,19 @@ public class PlayerManager extends Entity implements I_imageContainer, StandardB
 
         if(InputManager.upPressed)
         {
-            position.y-=Window.tileSizeInPixels*movementSpeed* Time.deltaTime;
+            position.y-=Window.getTileSizeInPixels()*movementSpeed* Time.deltaTime;
         }
         if(InputManager.downPressed)
         {
-            position.y+=Window.tileSizeInPixels*movementSpeed* Time.deltaTime;
+            position.y+=Window.getTileSizeInPixels()*movementSpeed* Time.deltaTime;
         }
         if(InputManager.leftPressed)
         {
-            position.x-=Window.tileSizeInPixels*movementSpeed* Time.deltaTime;
+            position.x-=Window.getTileSizeInPixels()*movementSpeed* Time.deltaTime;
         }
         if(InputManager.rightPressed)
         {
-            position.x+=Window.tileSizeInPixels*movementSpeed* Time.deltaTime;
+            position.x+=Window.getTileSizeInPixels()*movementSpeed* Time.deltaTime;
         }
 
         CameraManager.position=position;
@@ -69,6 +69,6 @@ public class PlayerManager extends Entity implements I_imageContainer, StandardB
     public void draw(Graphics2D graphics2D)
     {
         BufferedImage currentFrame;
-        graphics2D.drawImage(downFrames.getFirst(), Window.screenSize.width/2-Window.tileSizeInPixels/2,Window.screenSize.height/2-Window.tileSizeInPixels/2,Window.tileSizeInPixels,Window.tileSizeInPixels,null);
+        graphics2D.drawImage(downFrames.getFirst(), Window.screenSize.width/2-Window.getTileSizeInPixels()/2,Window.screenSize.height/2-Window.getTileSizeInPixels()/2,Window.getTileSizeInPixels(),Window.getTileSizeInPixels(),null);
     }
 }
