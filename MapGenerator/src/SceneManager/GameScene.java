@@ -45,7 +45,8 @@ public class GameScene extends Scene
 
         layoutInfo=map.getLayoutInfo();
         mapRenderer.initRenderer(layoutInfo);
-        VignetteGenerator.createVignette("Joc_PAOO/MapGenerator/res/efx/v.png",Window.screenSize.width,Window.screenSize.height,100);
+
+        VignetteGenerator.createVignette("res/efx/v.png",Window.screenSize.width,Window.screenSize.height,100);
         player.position=new Vector2(layoutInfo.entrancePosition.x* Window.getTileSizeInPixels()-Window.screenSize.width/2 ,layoutInfo.entrancePosition.y*Window.getTileSizeInPixels()-Window.screenSize.height/2);
         try {
             bfr = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/efx/v.png")));
@@ -95,8 +96,9 @@ public class GameScene extends Scene
     public void draw(Graphics2D graphics2D) {
 
         mapRenderer.draw(graphics2D);
+        player.draw(graphics2D,3);
         graphics2D.drawImage(bfr, 0,0, Window.screenSize.width,  Window.screenSize.height,null);
-        player.draw(graphics2D);
+
     }
 
 

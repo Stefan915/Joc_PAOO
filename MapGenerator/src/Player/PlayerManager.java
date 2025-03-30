@@ -1,10 +1,10 @@
 package Player;
 import Camera.CameraManager;
+import Entities.entityAnimations;
 import Input.InputManager;
 import Interfaces.I_imageContainer;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -33,23 +33,32 @@ public class PlayerManager extends Entity implements I_imageContainer, StandardB
 
     @Override
     public void Update() {
+        super.Update();
 
+        super.setAnimation(entityAnimations.IDLE);
         if(InputManager.upPressed)
         {
             position.y-=Window.getTileSizeInPixels()*movementSpeed* Time.deltaTime;
+            super.setAnimation(entityAnimations.MOVING);
         }
         if(InputManager.downPressed)
         {
             position.y+=Window.getTileSizeInPixels()*movementSpeed* Time.deltaTime;
+            super.setAnimation(entityAnimations.MOVING);
         }
         if(InputManager.leftPressed)
         {
             position.x-=Window.getTileSizeInPixels()*movementSpeed* Time.deltaTime;
+            super.setAnimation(entityAnimations.MOVING);
+            flipped=true;
         }
         if(InputManager.rightPressed)
         {
             position.x+=Window.getTileSizeInPixels()*movementSpeed* Time.deltaTime;
+            super.setAnimation(entityAnimations.MOVING);
+            flipped=false;
         }
+
 
         CameraManager.position=position;
     }
@@ -58,7 +67,21 @@ public class PlayerManager extends Entity implements I_imageContainer, StandardB
     {
         try
         {
-            downFrames.add(ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player.png"))));
+
+            //load run right
+            for(int i=1;i<=5;i++)
+            {
+                movingFrames.add(ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/RunRight/run"+i+".png"))));
+            }
+
+
+            //load run left
+            for(int i=1;i<=5;i++)
+            {
+                idleFrames.add(ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/Idle/idle"+i+".png"))));
+            }
+
+
         }
         catch(IOException exception)
         {
@@ -66,9 +89,4 @@ public class PlayerManager extends Entity implements I_imageContainer, StandardB
         }
     }
 
-    public void draw(Graphics2D graphics2D)
-    {
-        BufferedImage currentFrame;
-        graphics2D.drawImage(downFrames.getFirst(), Window.screenSize.width/2-Window.getTileSizeInPixels()/2,Window.screenSize.height/2-Window.getTileSizeInPixels()/2,Window.getTileSizeInPixels(),Window.getTileSizeInPixels(),null);
-    }
 }
