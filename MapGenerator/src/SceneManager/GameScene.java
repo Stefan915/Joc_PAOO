@@ -1,6 +1,7 @@
 package SceneManager;
 
 import Camera.CameraManager;
+import Camera.VignetteGenerator;
 import DataStructures.Vector2;
 import Input.InputManager;
 import Interfaces.I_imageContainer;
@@ -10,8 +11,11 @@ import Player.PlayerManager;
 import Time.Time;
 import WindowManager.Window;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Objects;
 
 import static java.lang.Thread.sleep;
 
@@ -24,7 +28,7 @@ public class GameScene extends Scene
     Double valueToSleepAfterFrame_double;
     private double FPSlimit=60;
 
-
+    BufferedImage bfr;
     @Override
     public void Start() throws IOException {
         MapInfo mapInfo;
@@ -41,9 +45,13 @@ public class GameScene extends Scene
 
         layoutInfo=map.getLayoutInfo();
         mapRenderer.initRenderer(layoutInfo);
-
+        VignetteGenerator.createVignette("Joc_PAOO/MapGenerator/res/efx/v.png",Window.screenSize.width,Window.screenSize.height,100);
         player.position=new Vector2(layoutInfo.entrancePosition.x* Window.getTileSizeInPixels()-Window.screenSize.width/2 ,layoutInfo.entrancePosition.y*Window.getTileSizeInPixels()-Window.screenSize.height/2);
-
+        try {
+            bfr = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/efx/v.png")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
@@ -61,7 +69,7 @@ public class GameScene extends Scene
 
             player.Update();
 
-            //System.out.println(Time.FPS);
+            System.out.println(Time.FPS);
 
             Time.setEndTime();
             Time.calculateFrameTime();
@@ -87,6 +95,7 @@ public class GameScene extends Scene
     public void draw(Graphics2D graphics2D) {
 
         mapRenderer.draw(graphics2D);
+        graphics2D.drawImage(bfr, 0,0, Window.screenSize.width,  Window.screenSize.height,null);
         player.draw(graphics2D);
     }
 

@@ -1,6 +1,7 @@
 package WindowManager;
 
 import Camera.CameraManager;
+import Camera.VignetteGenerator;
 import DataStructures.Vector2;
 import Input.InputManager;
 import Interfaces.StandardBehaviour;
@@ -9,9 +10,12 @@ import Player.PlayerManager;
 import SceneManager.*;
 import Time.Time;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Objects;
 
 import static java.lang.Thread.sleep;
 import SceneManager.ScenesManager;
@@ -25,7 +29,7 @@ import SceneManager.ScenesManager;
 
 public class gamePanel extends JPanel implements Runnable {
 
-
+    private BufferedImage bfr;
     InputManager inputManager = new InputManager();
     public boolean gameIsRunning = true;
 
