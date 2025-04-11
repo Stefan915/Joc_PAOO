@@ -36,11 +36,11 @@ public class GameScene extends Scene
         layout map;
         LayoutInfo layoutInfo;
 
-        generator = new MapGenerator(6, 10, 2);
+        generator = new MapGenerator(6, 16, 3);
         generator.generateMap();
         mapInfo = generator.getMap();
         mapInfo.printMap();
-        map = new layout(19, mapInfo._map, 2, 5);
+        map = new layout(19, mapInfo._map, 5, 10);
         map.print();
 
         layoutInfo=map.getLayoutInfo();
