@@ -53,6 +53,6 @@ public class VignetteGenerator {
     }
 
     public static void main(String[] args) {
-        createVignette("vignette.png", 500, 500, 100);
+        createVignette("/res/efx/v.png", 1920, 1080, 100);
     }
 }
