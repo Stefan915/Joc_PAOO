@@ -13,6 +13,7 @@ import WindowManager.Window;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
@@ -97,6 +98,7 @@ public class GameScene extends Scene
 
         mapRenderer.draw(graphics2D);
         player.draw(graphics2D,3);
-        graphics2D.drawImage(bfr, 0,0, Window.screenSize.width,  Window.screenSize.height,null);
+        AffineTransform at = AffineTransform.getScaleInstance(1, 1);
+        graphics2D.drawImage(bfr, at, null);
     }
 }
