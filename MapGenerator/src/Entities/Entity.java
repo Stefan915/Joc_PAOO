@@ -23,10 +23,12 @@ public class Entity implements StandardBehaviour, I_imageContainer {
 
 
 
+<<<<<<< HEAD
     final private double waitForFlipTime=0.1;
+=======
+    final private double waitForFlipTime=0.05;
+>>>>>>> 9771325c70a8f5fcd6152e07a8478e3feaab9463
     private double WaitForFlipTimer;
-
-
 
     private boolean finalFlipped;
     protected boolean flipped;
