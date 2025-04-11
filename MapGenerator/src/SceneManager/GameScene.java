@@ -98,8 +98,5 @@ public class GameScene extends Scene
         mapRenderer.draw(graphics2D);
         player.draw(graphics2D,3);
         graphics2D.drawImage(bfr, 0,0, Window.screenSize.width,  Window.screenSize.height,null);
-
     }
-
-
 }
