@@ -27,7 +27,7 @@ public class GameScene extends Scene
 
     private long valueToSleepAfterFrame;
     Double valueToSleepAfterFrame_double;
-    private double FPSlimit=60;
+    private double FPSlimit=200;
 
     BufferedImage bfr;
     @Override
