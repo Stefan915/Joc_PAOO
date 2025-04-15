@@ -6,15 +6,21 @@ import Interfaces.StandardBehaviour;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
-public class    InputManager implements KeyListener, StandardBehaviour
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+public class    InputManager implements KeyListener, StandardBehaviour, MouseListener, MouseMotionListener, MouseWheelListener
 {
     static public boolean upPressed;
     static public boolean downPressed;
     static public boolean leftPressed;
     static public boolean rightPressed;
+    static public boolean mouseClicked;
+    static public boolean mouseReleased;
+    static public boolean mouseHold;
     static public InputManager instance=new InputManager();
     static public Vector2 mousePosition=new Vector2(0,0);
+
 
     @Override
     public void keyTyped(KeyEvent event) {
@@ -91,6 +97,49 @@ public class    InputManager implements KeyListener, StandardBehaviour
         mouseInfo=MouseInfo.getPointerInfo();
         mousePosition.x=mouseInfo.getLocation().getX();
         mousePosition.y=mouseInfo.getLocation().getY();
+
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        mouseClicked=true;
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        mouseHold=true;
+        mouseReleased=false;
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        mouseHold=false;
+        mouseClicked=false;
+        mouseReleased=true;
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseWheelMoved(MouseWheelEvent e) {
 
     }
 }

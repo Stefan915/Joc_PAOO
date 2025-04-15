@@ -17,9 +17,12 @@ public class ButtonManager implements I_imageContainer, StandardBehaviour
     public int hoverFontSize;
     public Color color=Color.white;
     private boolean isHovered;
+    public boolean isReleased = false;
+    public boolean isPressed = false;
     private String auxButText;
     private Vector2 centeredPosition=new Vector2(0,0);
     private Vector2 centeredPositionSize=new Vector2(0,0);
+
     public ButtonManager(String buttonText,Vector2 position,Vector2 backgroundSize,int fontSize,int hoverFontSize)
     {
         this.buttonText=buttonText;
@@ -54,6 +57,13 @@ public class ButtonManager implements I_imageContainer, StandardBehaviour
             buttonText = auxButText;
             isHovered = false;
         }
+             if(isHovered && InputManager.mouseReleased){
+                isReleased = true;
+                isPressed = false;
+             }else if(isHovered && InputManager.mouseHold){
+                 isPressed = true;
+             }
+    }
 
 
     }
