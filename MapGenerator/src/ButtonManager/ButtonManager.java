@@ -66,7 +66,7 @@ public class ButtonManager implements I_imageContainer, StandardBehaviour
     }
 
 
-    }
+
 
     @Override
     public void draw(Graphics2D graphics2D) {
