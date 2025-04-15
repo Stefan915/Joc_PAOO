@@ -4,8 +4,12 @@ import DataStructures.Vector2;
 import Input.InputManager;
 import Interfaces.I_imageContainer;
 import Interfaces.StandardBehaviour;
+import SceneManager.ScenesManager;
+import SceneManager.allScenes;
+import WindowManager.Window;
 
 import java.awt.*;
+import java.io.IOException;
 
 public class ButtonManager implements I_imageContainer, StandardBehaviour
 {
@@ -62,6 +66,14 @@ public class ButtonManager implements I_imageContainer, StandardBehaviour
                 isPressed = false;
              }else if(isHovered && InputManager.mouseHold){
                  isPressed = true;
+                 System.out.println("hold");
+             }
+             if(isReleased){
+                 try {
+                     ScenesManager.instance.setCurrentActiveScene(allScenes.GAME);
+                 } catch (IOException e) {
+                     throw new RuntimeException(e);
+                 }
              }
     }
 

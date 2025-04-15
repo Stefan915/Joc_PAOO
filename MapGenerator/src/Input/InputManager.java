@@ -101,7 +101,11 @@ public class    InputManager implements KeyListener, StandardBehaviour, MouseLis
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        mouseClicked=true;
+        if (!mouseClicked) { // Prevent double setting
+            mouseClicked = true;
+            System.out.println("Mouse clicked");
+        }
+
     }
 
     @Override

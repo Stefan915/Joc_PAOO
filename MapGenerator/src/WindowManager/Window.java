@@ -40,6 +40,10 @@ public class Window
         window.addKeyListener(InputManager.instance);
         window.setFocusable(true);
 
+        InputManager inputManager = InputManager.instance;
+
+        // Add listeners
+        panel.addMouseListener(inputManager);
 
 
         window.add(panel);
