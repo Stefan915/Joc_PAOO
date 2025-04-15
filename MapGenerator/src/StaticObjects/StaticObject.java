@@ -17,7 +17,11 @@ public class StaticObject implements I_imageContainer {
     }
     @Override
     public void draw(Graphics2D graphics2D) {
-        graphics2D.drawImage(sprite,position.x* Window.getTileSizeInPixels()- (int)CameraManager.position.x,position.y*Window.getTileSizeInPixels()-(int)CameraManager.position.y,Window.getTileSizeInPixels(),Window.getTileSizeInPixels(),null);
+        if (position.x * Window.getTileSizeInPixels()>= CameraManager.position.x-200 && position.x* Window.getTileSizeInPixels()<=CameraManager.position.x +Window.screenSize.width+100 &&
+            position.y * Window.getTileSizeInPixels()>= CameraManager.position.y-200 && position.y * Window.getTileSizeInPixels()<=CameraManager.position.y +Window.screenSize.height+100
+        ) {
+            graphics2D.drawImage(sprite, position.x * Window.getTileSizeInPixels() - (int) CameraManager.position.x, position.y * Window.getTileSizeInPixels() - (int) CameraManager.position.y, Window.getTileSizeInPixels(), Window.getTileSizeInPixels(), null);
+        }
     }
 
     @Override
