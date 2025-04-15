@@ -16,7 +16,7 @@ public class Window
     gamePanel panel;
     static private int tileSizeInPixels=70;
 
-    Color backgroundColor=new Color(34,20,26);
+    Color backgroundColor=new Color(255,255,255);
 
     public void initWindow(String nume)
     {
@@ -47,10 +47,10 @@ public class Window
         panel.setBackground(backgroundColor);
 
         //aplicare setari
-        window.pack();
+        //window.pack();
 
         //activare fereastra
-        window.setVisible(true);
+        //window.setVisible(true);
     }
 
 

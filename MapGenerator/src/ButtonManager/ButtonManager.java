@@ -28,7 +28,6 @@ public class ButtonManager implements I_imageContainer, StandardBehaviour
         this.fontSize=fontSize;
         this.hoverFontSize=hoverFontSize;
         currentFontSize=fontSize;
-
     }
 
 

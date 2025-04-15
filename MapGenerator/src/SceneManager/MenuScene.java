@@ -15,10 +15,21 @@ public class MenuScene extends Scene implements ActionListener {
     @Override
     public void Start() throws IOException {
                 JButton b=new JButton("Click Here");
-                b.setBounds(Window.screenSize.width/2,Window.screenSize.height/2,1000,1000);
+                b.setBounds(0,0,200,100);
+                final JTextField tf=new JTextField();
+                tf.setBounds(50,50, 150,20);
                 System.out.println("am pus butonu");
+                b.setBackground(Color.BLACK);
+                b.setContentAreaFilled(true);
+                b.addActionListener(new ActionListener(){
+                    public void actionPerformed(ActionEvent e){
+                        tf.setText("Welcome to Javatpoint.");
+                    }
+                });
                 instance.window.add(b);
+                instance.window.add(tf);
                 instance.window.setLayout(null);
+                instance.window.pack();
                 instance.window.setVisible(true);
     }
 
