@@ -42,10 +42,8 @@ public class Window
 
         InputManager inputManager = InputManager.instance;
 
-        // Add listeners
+        //listeners pt mouse si altele
         panel.addMouseListener(inputManager);
-
-
         window.add(panel);
 
         panel.setBackground(backgroundColor);
