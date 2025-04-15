@@ -9,6 +9,8 @@ import java.awt.event.KeyListener;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
+import java.util.Vector;
+
 public class    InputManager implements KeyListener, StandardBehaviour, MouseListener, MouseMotionListener, MouseWheelListener
 {
     static public boolean upPressed;
@@ -56,9 +58,6 @@ public class    InputManager implements KeyListener, StandardBehaviour, MouseLis
                 break;
             }
         }
-
-
-
     }
 
     @Override
