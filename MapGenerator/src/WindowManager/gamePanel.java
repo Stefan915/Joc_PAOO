@@ -8,13 +8,6 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import SceneManager.ScenesManager;
 
-
-
-
-
-
-
-
 public class gamePanel extends JPanel implements Runnable {
 
     private BufferedImage bfr;
@@ -41,7 +34,7 @@ public class gamePanel extends JPanel implements Runnable {
     }
 
     public void Start() throws IOException {
-        ScenesManager.instance.setCurrentActiveScene(allScenes.GAME);
+        ScenesManager.instance.setCurrentActiveScene(allScenes.MENU);
     }
 
     public void Update() throws IOException {

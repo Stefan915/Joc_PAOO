@@ -27,7 +27,7 @@ public class GameScene extends Scene
 
     private long valueToSleepAfterFrame;
     Double valueToSleepAfterFrame_double;
-    private double FPSlimit=200;
+    private double FPSlimit=60;
 
     BufferedImage bfr;
     @Override
@@ -48,7 +48,7 @@ public class GameScene extends Scene
         mapRenderer.initRenderer(layoutInfo);
 
         VignetteGenerator.createVignette("res/efx/v.png",Window.screenSize.width,Window.screenSize.height,100);
-        player.position=new Vector2(layoutInfo.entrancePosition.x* Window.getTileSizeInPixels()-Window.screenSize.width/2 ,layoutInfo.entrancePosition.y*Window.getTileSizeInPixels()-Window.screenSize.height/2);
+        player.position=new Vector2(layoutInfo.entrancePosition.x* Window.getTileSizeInPixels()-Window.screenSize.width ,layoutInfo.entrancePosition.y*Window.getTileSizeInPixels()-Window.screenSize.height);
         try {
             bfr = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/efx/v.png")));
         } catch (IOException e) {
@@ -61,10 +61,6 @@ public class GameScene extends Scene
 
     @Override
     public void Update() {
-
-
-
-
             Time.setStartTime();
             Time.setStartTimeDelta();
 

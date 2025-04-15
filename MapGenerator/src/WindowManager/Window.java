@@ -8,7 +8,8 @@ import java.awt.*;
 
 public class Window
 {
-    JFrame window;
+    public static Window instance;
+    public JFrame window;
     static public Dimension screenSize;
     Thread gameThread;
     public boolean gameIsRunning=true;
@@ -19,6 +20,7 @@ public class Window
 
     public void initWindow(String nume)
     {
+        instance = this;
         panel=new gamePanel();
 
         window=new JFrame(nume);

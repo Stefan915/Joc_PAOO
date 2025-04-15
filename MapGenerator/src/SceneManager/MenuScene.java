@@ -1,16 +1,12 @@
 package SceneManager;
-
-import ButtonManager.ButtonManager;
-import DataStructures.Vector2;
 import WindowManager.Window;
-
 import javax.swing.*;
-import javax.swing.ImageIcon;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
+
+import static WindowManager.Window.instance;
 
 public class MenuScene extends Scene implements ActionListener {
 
@@ -18,14 +14,12 @@ public class MenuScene extends Scene implements ActionListener {
 
     @Override
     public void Start() throws IOException {
-        playButton=new JButton();
-        playButton.setBounds(200,100,100,50);
-        playButton.addActionListener(this);
-        //this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        //this.setLayout(null);
-        //this.setSize(500,500);
-        //.setVisible(true);
-        //this.add(playButton);
+                JButton b=new JButton("Click Here");
+                b.setBounds(Window.screenSize.width/2,Window.screenSize.height/2,1000,1000);
+                System.out.println("am pus butonu");
+                instance.window.add(b);
+                instance.window.setLayout(null);
+                instance.window.setVisible(true);
     }
 
     @Override
